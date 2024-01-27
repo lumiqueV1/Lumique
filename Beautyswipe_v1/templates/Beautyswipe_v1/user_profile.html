@@ -1,0 +1,21 @@
+<!-- Beautyswipe_v1/templates/Beautyswipe_v1/user_profile.html -->
+
+{% extends 'Beautyswipe_v1/base.html' %}
+
+{% block title %}User Profile - {{ user_profile.user.username }}{% endblock %}
+{% block content %}
+    <h2>{{ user_profile.user.username }}'s Profile</h2>
+    <p>Email: {{ user_profile.user.email }}</p>
+    <p>Bio: {{ user_profile.bio }}</p>
+    <p class="timestamp">{{ photo.timestamp|date:"F j, Y H:i" }}</p>
+    {% if user_profile.profile_picture %}
+        <img src="{{ user_profile.profile_picture.url }}" alt="{{ user_profile.user.username }}" class="profile-picture">
+    {% else %}
+        <p>No profile picture available.</p>
+    {% endif %}
+
+    <!-- Display user-specific content, e.g., photos, etc. -->
+    {% for photo in user_profile.user.photos.all %}
+        <!-- Display user-specific content here -->
+    {% endfor %}
+{% endblock %}

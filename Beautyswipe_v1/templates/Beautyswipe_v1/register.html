@@ -1,0 +1,98 @@
+<!-- Beautyswipe_v1/templates/Beautyswipe_v1/register.html -->
+
+{% extends 'Beautyswipe_v1/base.html' %}
+
+{% block content %}
+
+<style>
+  body {
+      background-color: #f8f9fa; /* Light gray background */
+  }
+
+  h2 {
+      color: #007bff; /* Blue heading color */
+  }
+
+  form {
+      background-color: #ffffff; /* White form background */
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Slight shadow for form */
+      padding: 20px; /* Add padding for form content */
+      border-radius: 8px; /* Rounded corners for form */
+      margin-top: 20px; /* Add space from the top */
+  }
+
+  form {
+        max-width: 400px; /* Set the maximum width for the form */
+        margin: 0 auto; /* Center the form horizontally */
+    }
+
+  label {
+      color: #007bff; /* Blue label color */
+      font-weight: bold; /* Bold font for labels */
+  }
+
+  .form-group {
+      margin-bottom: 20px; /* Add space between form groups */
+  }
+
+  small {
+      color: #6c757d; /* Dark gray color for small text */
+      display: block; /* Make small text block-level */
+      margin-top: 5px; /* Add space at the top of small text */
+  }
+
+  button {
+      background-color: #007bff; /* Blue button background */
+      color: #ffffff; /* White button text color */
+  }
+
+  button:hover {
+      background-color: #0056b3; /* Darker blue color on hover */
+  }
+</style>
+
+
+  <h2>Register</h2>
+
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="form-group">
+      <label for="id_username">Username:</label>
+      {{ form.username }}
+    </div>
+
+    <div class="form-group">
+      <label for="id_email">Email:</label>
+      {{ form.email }}
+    </div>
+
+    <div class="form-group">
+      <label for="id_password1">Password:</label>
+      {{ form.password1 }}
+      <small>
+        Your password can’t be too similar to your other personal information.<br>
+        Your password must contain at least 8 characters.<br>
+        Your password can’t be a commonly used password.<br>
+        Your password can’t be entirely numeric.
+      </small>
+    </div>
+
+    <div class="form-group">
+      <label for="id_password2">Password confirmation:</label>
+      {{ form.password2 }}
+    </div>
+
+    <div class="form-group">
+      <label for="id_bio">Bio:</label>
+      {{ form.bio }}
+    </div>
+
+    <div class="form-group">
+      <label for="id_profile_picture">Profile Picture:</label>
+      {{ form.profile_picture }}
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Register</button>
+  </form>
+{% endblock %}

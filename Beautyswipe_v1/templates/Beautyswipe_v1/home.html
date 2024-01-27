@@ -1,0 +1,173 @@
+<!-- Beautyswipe/Beautyswipe_v1/templates/Beautyswipe_v1/home.html -->
+
+{% extends 'Beautyswipe_v1/base.html' %}
+
+{% block title %}Home - Lumique{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        background-color: #121212; /* Darker background color */
+        color: #eee; /* Light text color */
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Choose a suitable font */
+    }
+
+    .youtube-community-post {
+        border: 1px solid #333;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease;
+        background-color: #212121; /* Dark background color */
+    }
+
+    .youtube-community-post:hover {
+        transform: scale(1.02);
+    }
+
+    .user-info {
+        display: flex;
+        align-items: center;
+        padding: 12px;
+        border-bottom: 1px solid #444;
+    }
+
+    .profile-picture {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-right: 12px;
+        border: 2px solid #333; /* Darker border color */
+    }
+
+    .username-timestamp {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .username {
+        font-size: 16px;
+        font-weight: bold;
+        color: #ffcc00; /* Highlight color */
+    }
+
+    .timestamp {
+        font-size: 12px;
+        color: #aaa;
+    }
+
+    .photo-details {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .photo-thumbnail {
+        width: 100%;
+        height: 450px;
+        object-fit: cover;
+    }
+
+    .card-title {
+        padding: 12px;
+        font-size: 18px;
+        font-weight: bold;
+        color: #eee;
+    }
+
+    .votes-interaction {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px;
+        border-top: 1px solid #444;
+    }
+
+    .votes-count {
+        font-size: 14px;
+        color: #aaa;
+    }
+
+    .interaction-buttons {
+        display: flex;
+        gap: 8px;
+    }
+
+    .like-button,
+    .dislike-button,
+    .comment-button {
+        padding: 8px 12px;
+        font-size: 14px;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .like-button {
+        background-color: #ffcc00; /* Highlight color */
+    }
+
+    .like-button:hover {
+        background-color: #ffa500; /* Darker highlight color on hover */
+    }
+
+    .dislike-button {
+        background-color: #e53935;
+    }
+
+    .dislike-button:hover {
+        background-color: #d32f2f;
+    }
+
+    .comment-button {
+        background-color: #3498db;
+    }
+
+    .comment-button:hover {
+        background-color: #2980b9;
+    }
+</style>
+
+
+<div class="container mt-4">
+    <div class="row mt-4">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                {% if user.is_authenticated %}
+                    <p>Welcome, {{ user.username }}! (<a href="{% url 'Beautyswipe_v1:logout' %}">Logout</a>)</p>
+                    <p><a href="{% url 'Beautyswipe_v1:submit_photo' %}">Submit a Photo</a></p>
+                {% else %}
+                    <p><a href="{% url 'Beautyswipe_v1:login' %}">Login</a> to vote and submit photos.</p>
+                {% endif %}
+            </div>
+        </div>
+        {% for photo in photos %}
+            <div class="col-md-4 mb-4">
+                <div class="youtube-community-post card">
+                    <div class="user-info">
+                        <a href="{% url 'Beautyswipe_v1:user_profile' user_id=photo.user.user.id %}">
+                            <img src="{% if photo.user.profile_picture %}{{ photo.user.profile_picture.url }}{% else %}{% endif %}" alt="{{ photo.user.user.username }}" class="profile-picture">
+                        </a>
+                        <div class="username-timestamp">
+                            <p class="username">{{ photo.user.user.username }}</p>
+                            <p class="timestamp">{{ photo.timestamp|date:"F j, Y H:i" }}</p>
+                        </div>
+                    </div>
+                    <div class="photo-details">
+                        <img src="{{ photo.image.url }}" alt="{{ photo.caption }}" class="photo-thumbnail">
+                    </div>
+                    <h5 class="card-title">{{ photo.caption }}</h5>
+                    <div class="votes-interaction">
+                        <p class="votes-count">Votes: {{ photo.vote.count }}</p>
+                        <div class="interaction-buttons">
+                            <button class="like-button">Like</button>
+                            <button class="dislike-button">Dislike</button>
+                            <!-- <button class="comment-button">Comment</button> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,111 @@
+<!-- Beautyswipe_v1/templates/Beautyswipe_v1/about.html -->
+
+{% extends 'Beautyswipe_v1/base.html' %}
+
+{% block content %}
+  <div class="container mt-5">
+    <div class="jumbotron text-center bg-dark text-light">
+      <h1 class="display-4">Welcome to Beautyswipe</h1>
+      <p class="lead">
+        Empowering Beauty, Celebrating Diversity
+      </p>
+      <hr class="my-4">
+      <p>
+        Join the global beauty ranking by showcasing your unique photos and receiving votes. Beautyswipe is where beauty meets recognition.
+      </p>
+      <a class="btn btn-primary btn-lg" href="{% url 'Beautyswipe_v1:login' %}" role="button">Get Started</a>
+    </div>
+    <div class="row about-section">
+      <div class="col-md-8 offset-md-2 text-center">
+        <h2 class="mb-4">About Beautyswipe</h2>
+        <p class="text-muted">
+          Beautyswipe is more than just a platform; it's a movement. We believe in empowering individuals to express and celebrate their unique beauty. Our goal is to create a positive and engaging space where users can not only showcase their photos but also appreciate the diverse forms of beauty shared by others. Through votes and interactions, we aim to build a global beauty ranking that reflects the true essence of beauty.
+        </p>
+      </div>
+    </div>
+
+    <div class="row mt-5 top-users-section">
+      <div class="col-md-8 offset-md-2 text-center">
+        <h2 class="mb-4">Top 20 Users</h2>
+        <ul class="list-group">
+          {% for user in top_users %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              {{ user.username }}
+              <span class="badge badge-primary badge-pill">World Beauty Rank: {{ user.total_votes }}</span>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+
+    .jumbotron {
+      background-color: #343a40;
+      color: #ffffff;
+      padding: 4rem 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .jumbotron h1 {
+      font-weight: bold;
+    }
+
+    .jumbotron p {
+      font-size: 1.2rem;
+    }
+
+    .jumbotron a {
+      color: #ffffff;
+    }
+
+    .jumbotron a:hover {
+      text-decoration: none;
+    }
+
+    .about-section {
+      margin-top: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    .about-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .about-section p {
+      font-size: 1.1rem;
+      color: #495057;
+    }
+
+    .top-users-section {
+      margin-top: 4rem;
+    }
+
+    .top-users-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .list-group-item {
+      font-size: 1.2rem;
+      padding: 1rem 1.5rem;
+      margin-bottom: 1rem;
+      border: 1px solid #dee2e6;
+      border-radius: 0.375rem;
+    }
+
+    .list-group-item:hover {
+      background-color: #f8f9fa;
+    }
+
+    .badge-pill {
+      font-size: 1rem;
+      padding: 0.6rem 1rem;
+    }
+  </style>
+{% endblock %}

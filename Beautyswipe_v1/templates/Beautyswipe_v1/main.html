@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Add a link to your preferred icon library, e.g., Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <title>Beautyswipe</title>
+
+<style>
+    body {
+  font-family: 'Montserrat', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f8f8;
+  color: #333;
+  transition: background-color 0.5s ease;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.5s ease, padding 0.5s ease;
+}
+
+.fixed-nav header {
+  padding: 10px;
+  background-color: #3498db;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #3498db;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+}
+
+nav li {
+  margin-right: 20px;
+  cursor: pointer;
+  color: #666;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+nav li:hover {
+  color: #3498db;
+}
+
+.hero {
+  text-align: center;
+  padding: 100px 20px;
+  background-color: #3498db;
+  color: #fff;
+}
+
+.hero img {
+  width: 100%;
+  max-width: 800px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.tagline {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.about,
+.how-it-works,
+.photo-submission,
+.voting,
+.global-rankings,
+.user-profiles {
+  padding: 50px 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  margin: 20px 0;
+}
+
+.about h2,
+.how-it-works h2,
+.photo-submission h2,
+.voting h2,
+.global-rankings h2,
+.user-profiles h2 {
+  color: #3498db;
+}
+
+.steps {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 30px;
+}
+
+.step {
+  text-align: center;
+  max-width: 300px;
+}
+
+.step i {
+  font-size: 40px;
+  color: #3498db;
+}
+
+.form input,
+.form button {
+  margin-bottom: 20px;
+  padding: 15px;
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+button.cta-button {
+  background-color: #e74c3c;
+  color: #fff;
+  cursor: pointer;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  transition: background-color 0.3s;
+}
+
+button.cta-button:hover {
+  background-color: #c0392b;
+}
+
+footer {
+  background-color: #2c3e50;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.social-media-links .social-link {
+  margin-left: 10px;
+  color: #fff;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+.social-media-links .social-link:hover {
+  color: #3498db;
+}
+
+
+
+</style>    
+
+
+
+</head>
+
+<body>
+
+  <!-- Header Section -->
+  <header>
+    <div class="logo">Beautyswipe</div>
+    <nav>
+      <ul>
+        <li class="nav-item" onclick="scrollToSection('hero-section')">Home</li>
+        <li class="nav-item" onclick="scrollToSection('about-section')">Upload</li>
+        <li class="nav-item" onclick="scrollToSection('voting-section')">Vote</li>
+        <li class="nav-item" onclick="scrollToSection('global-rankings-section')">Rankings</li>
+        <li class="nav-item" onclick="scrollToSection('user-profiles-section')">Profile</li>
+      </ul>
+    </nav>
+    <div class="auth">Auth</div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="hero-section" class="hero">
+    <img src="hero-image.jpg" alt="Beautyswipe">
+    <div class="tagline">
+      <h1>Discover Beauty Worldwide <i class="fas fa-globe"></i></h1>
+    </div>
+    <p>Join Beautyswipe and Share Your Beauty with the World!</p>
+    <button class="cta-button" onclick="scrollToSection('about-section')">Get Started</button>
+  </section>
+
+  <!-- About Section -->
+  <section id="about-section" class="about" style="text-align: center;">
+    <h2 style="text-align: center;">About Beautyswipe</h2>
+    <p style="text-align: center;">Empowering individuals to showcase their beauty in a positive and engaging environment. Create a global beauty ranking based on votes.</p>
+    <button class="cta-button" onclick="scrollToSection('how-it-works-section')" >Learn More</button>
+  </section>
+
+  <!-- How It Works Section -->
+  <section id="how-it-works-section" class="how-it-works" style="text-align: center;">
+    <h2 style="text-align: center;">How It Works</h2>
+    <p style="text-align: center;">Follow these simple steps to become part of the global beauty community.</p>
+    <div class="steps">
+      <div class="step">
+        <i class="fas fa-camera"></i>
+        <p style="text-align: center;">Submit Your Stunning Photos</p>
+      </div>
+      <div class="step">
+        <i class="fas fa-vote-yea"></i>
+        <p>Engage in Voting</p>
+      </div>
+      <div class="step">
+        <i class="fas fa-chart-line"></i>
+        <p>Watch Your Global Rankings Soar</p>
+      </div>
+    </div>
+    <button class="cta-button" onclick="scrollToSection('photo-submission-section')">Start Now</button>
+  </section>
+
+  <!-- Photo Submission Section -->
+  <section id="photo-submission-section" class="photo-submission" style="text-align: center;">
+    <h2>Submit Your Photos</h2>
+    <p>Join the beauty revolution by sharing your best photos. Let the world see your unique style!</p>
+    <form>
+      <input type="file" accept="image/*" id="fileInput">
+      <input type="text" placeholder="Add a Captivating Caption">
+      <button type="submit" class="cta-button">Submit</button>
+    </form>
+    <button class="cta-button" onclick="scrollToSection('voting-section')">Explore More</button>
+  </section>
+
+  <!-- Voting Section -->
+  <section id="voting-section" class="voting" style="text-align: center;">
+    <h2>Vote for Your Favorites</h2>
+    <p>Engage with the community by casting your votes. Celebrate beauty in all its forms!</p>
+    <button class="cta-button">Vote Now</button>
+    <button class="cta-button" onclick="scrollToSection('global-rankings-section')">See Top Photos</button>
+  </section>
+
+  <!-- Global Rankings Section -->
+  <section id="global-rankings-section" class="global-rankings" style="text-align: center;">
+    <h2>Global Beauty Rankings</h2>
+    <p>Witness real-time updates and see who's leading the global beauty charts. Is it you?</p>
+    <button class="cta-button">Explore Rankings</button>
+    <button class="cta-button" onclick="scrollToSection('user-profiles-section')">Get Featured</button>
+  </section>
+
+  <!-- User Profiles Section -->
+  <section id="user-profiles-section" class="user-profiles" style="text-align: center;">
+    <h2>Your Unique Profile</h2>
+    <p>Customize your space with photos, bios, and voting history. Show the world what makes you beautiful!</p>
+    <button class="cta-button">Edit Profile</button>
+    <button class="cta-button">Log Out</button>
+  </section>
+
+  <!-- Footer Section -->
+  <footer>
+    <div class="contact-info">Contact Us: contact@beautyswipe.com</div>
+    <div class="social-media-links">
+      Follow Us: 
+      <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+      <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+    </div>
+  </footer>
+
+  <script>
+    function scrollToSection(sectionId) {
+      document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Example: Toggle a fixed navigation bar after scrolling
+    window.onscroll = function() { toggleFixedNavbar() };
+
+    const navbar = document.querySelector('header');
+    const heroSection = document.getElementById('hero-section');
+
+    function toggleFixedNavbar() {
+      if (window.pageYOffset > heroSection.offsetHeight) {
+        navbar.classList.add('fixed-nav');
+      } else {
+        navbar.classList.remove('fixed-nav');
+      }
+    }
+  </script>
+
+</body>
+</html>
+

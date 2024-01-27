@@ -1,0 +1,55 @@
+<!-- Beautyswipe_v1/templates/Beautyswipe_v1/ranking.html -->
+
+{% extends 'Beautyswipe_v1/base.html' %}
+
+{% block content %}
+  <div class="container mt-5">
+    <h2 class="mb-4">Top 20 Users</h2>
+    <div class="row">
+      {% for user in top_users %}
+        <div class="col-md-2 text-center">
+          <div class="user-circle">
+            {% if user.profile_picture %}
+              <img src="{{ user.profile_picture.url }}" alt="{{ user.username }}" class="profile-picture">
+            {% else %}
+              <!-- Add a default image or some placeholder -->
+              <img src="#" alt="{{ user.username }}" class="profile-picture">
+            {% endif %}
+            <span class="voting-rank">{{ user.total_votes }}</span>
+          </div>
+          <p class="username">{{ user.user.username }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}
+
+<style>
+  .user-circle {
+    position: relative;
+  }
+
+  .profile-picture {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .default-profile-picture {
+    width: 100px;
+    height: 100px;
+    background-color: #ccc; /* Set a default background color */
+    border-radius: 50%;
+  }
+
+  .voting-rank {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background-color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+  }
+</style>
+
