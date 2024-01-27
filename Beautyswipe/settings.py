@@ -16,7 +16,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS').split(',')
 
-ALLOWED_HOSTS = ['lumique.lol', 'bypass-production-b7db.up.railway.app']
+ALLOWED_HOSTS = ['lumique.lol', 'lumique-production.up.railway.app']
 
 
 # Application definition
