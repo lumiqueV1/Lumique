@@ -129,7 +129,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",  # Replace with your frontend URL
+    "https://lumique.lol",  # Replace with your frontend URL
     "https://lumique-production.up.railway.app",
 ]
 
