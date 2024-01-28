@@ -133,4 +133,6 @@ CORS_ALLOWED_ORIGINS = [
     "https://lumique-production.up.railway.app",
 ]
 
+CSRF_TRUSTED_ORIGINS = ['https://lumique.lol']
+
 
