@@ -209,6 +209,7 @@ function toggleGlobalBeautyRank(button) {
         dataType: 'json',
         headers: {
             'X-CSRFToken': getCookie('csrftoken'),  // Include CSRF token
+            'Origin': 'https://lumique.lol',
         },
         success: function (data) {
             // Update the displayed count on success
