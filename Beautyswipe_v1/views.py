@@ -80,19 +80,12 @@ def submit_photo(request):
         form = PhotoSubmissionForm(request.POST, request.FILES)
         if form.is_valid():
             photo = form.save(commit=False)
-
-            # Check if the user is authenticated before associating the user with the photo
-            if request.user.is_authenticated:
-                user_profile, created = UserProfile.objects.get_or_create(user=request.user)
-                photo.user = user_profile
-
             photo.save()
             return redirect('Beautyswipe_v1:ranked_photos')
     else:
         form = PhotoSubmissionForm()
 
     return render(request, 'Beautyswipe_v1/submit_photo.html', {'form': form})
-
 
 
 
