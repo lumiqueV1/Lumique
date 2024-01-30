@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <title>{% block title %}Lumique{% endblock %}</title>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <style>
+      #hero {
+        height: 80vh;
+        background-color: #000000;
+        opacity: 1;
+        color: white;
+        background: linear-gradient(135deg, #22222255 25%, transparent 25%) -10px
+            0/ 20px 20px,
+          linear-gradient(225deg, #222222 25%, transparent 25%) -10px 0/ 20px
+            20px,
+          linear-gradient(315deg, #22222255 25%, transparent 25%) 0px 0/ 20px 20px,
+          linear-gradient(45deg, #222222 25%, #000000 25%) 0px 0/ 20px 20px;
+      }
+
+      .card {
+        color: white;
+        background-color: #1c1c1c;
+        border-radius: 50px 0;
+      }
+
+      .post-image {
+        height: 350px;
+        background-color: gray;
+        width: 100%;
+      }
+
+      .mainTitle {
+        font-size: 3rem;
+        font-weight: bold;
+      }
+
+      .mainText {
+        color: rgb(144, 144, 144);
+      }
+
+      h2 {
+        font-weight: bold;
+      }
+
+      #posts {
+        margin: 0;
+        padding: 0;
+        color: white;
+      }
+      .fs-4{
+    color: #007bff !important; /* Blue color for the brand name */
+    font-weight: bold; /* Bold font for the brand name */
+    font-size: 5rem; /* Larger font size for a bold presence */
+    letter-spacing: 2px; /* Increased letter spacing for emphasis */
+    text-transform: uppercase; /* Convert the text to uppercase */
+    text-decoration: none; /* Remove underlines or other decorations */
+    transition: color 0.3s ease-in-out; /* Add a smooth color transition */
+}
+
+.navbar-brand:hover {
+    color: #0056b3 !important; /* Darker blue color on hover */
+}
+    </style>
+  </head>
+  <body>
+    <!-- Hero start  -->
+    <section id="hero" class="d-flex align-items-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6">
+            <h1 class="mainTitle">
+              Share your story, get votes, and elevate your individuality.
+            </h1>
+            <p class="fs-5 mainText">
+              Your passport to a global celebration of uniqueness. It's not just
+              a platform it's a community that amplifies your shine.
+            </p>
+            <a class="btn btn-lg btn-primary mt-3">Upload a photo for FREE</a>
+          </div>
+          <div class="col-lg-6"></div>
+        </div>
+      </div>
+    </section>
+    <!-- Hero end  -->
+    <section class="bg-dark sticky-top">
+      <!-- Navbar start  -->
+      <header
+        class="d-flex flex-wrap justify-content-center py-3 container nav-dark"
+      >
+        <a
+          href="/"
+          class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none"
+        >
+          <span class="fs-4 text-white">LUMIQUE</span>
+        </a>
+
+        <ul class="nav nav-pills">
+          <li class="nav-item">
+            <a href="#" class="nav-link active" aria-current="page"
+              >Upload a pos</a
+            >
+          </li>
+          <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+          <li class="nav-item"><a href="#" class="nav-link">Contact us</a></li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">All Posts</a>
+          </li>
+        </ul>
+      </header>
+    </section>
+    <!-- Navbar end  -->
+
+    <!-- Posts start  -->
+    <section id="posts" class="py-5 bg-dark">
+      <div class="container">
+        <div class="pb-3">
+          <h2>Featured posts</h2>
+          <p>
+            Unveil your personal story, share your experiences, and showcase
+            your distinctiveness to the world.
+          </p>
+        </div>
+
+        <div class="row">
+          {% for photo in ranked_photos %}
+          <div class="col-lg-4">
+            <!-- POST START  -->
+            <div class="card mb-5">
+              <p class="text-end pe-3 align-items-center mt-3">
+                {{ photo.timestamp|date:"F j, Y H:i" }}
+              </p>
+              <img src="{{ MEDIA_URL }}{{ photo.image.url }}" alt="{{ photo.caption }}" class="post-image">
+              <!-- <img src="image.jpg" alt="" class="post-image" /> -->
+              <h2 class="p-3">{{ photo.caption }}</h2>
+              <div class="d-flex align-items-center mb-3">
+                <button class="mx-3" style="border: none; background: none; padding: 0; cursor: pointer;" data-photo-id="{{ photo.id }}" onclick="toggleGlobalBeautyRank(this)">
+                  <i data-feather="triangle" stroke="white"></i>
+                </button>
+                <p class="m-0" id="globalBeautyRank{{ photo.id }}"> Upvotes {{ photo.get_votes_count }}</p>
+              </div>
+            </div>
+            <!-- POST END  -->
+          </div>
+          <!-- POST START  -->
+          <!-- <div class="col-lg-4">
+            <div class="card mb-5">
+              <p class="text-end pe-3 align-items-center mt-3">
+                January 29, 2024 15:46
+              </p>
+              <img src="image2.jpg" alt="" class="post-image" />
+              <h2 class="p-3">AI is going to takeover the world!</h2>
+              <div class="d-flex align-items-center mb-3">
+                <a class="mx-3">
+                  <i data-feather="triangle" stroke="white"></i>
+                </a>
+                <p class="m-0">65 upvotes</p>
+              </div>
+            </div>
+          </div> -->
+          <!-- POST END  -->
+          <!-- POST START  -->
+          <!-- <div class="col-lg-4">
+            <div class="card mb-5">
+              <p class="text-end pe-3 align-items-center mt-3">
+                January 29, 2024 15:46
+              </p>
+              <img src="image3.jpg" alt="" class="post-image" />
+              <h2 class="p-3">AI is going to takeover the world!</h2>
+              <div class="d-flex align-items-center mb-3">
+                <a class="mx-3">
+                  <i data-feather="triangle" stroke="white"></i>
+                </a>
+                <p class="m-0">65 upvotes</p>
+              </div>
+            </div>
+          </div> -->
+          <!-- POST END  -->
+          <!-- POST START  -->
+          <!-- <div class="col-lg-4">
+            <div class="card mb-5">
+              <p class="text-end pe-3 align-items-center mt-3">
+                January 29, 2024 15:46
+              </p>
+              <img src="image4.jpg" alt="" class="post-image" />
+              <h2 class="p-3">AI is going to takeover the world!</h2>
+              <div class="d-flex align-items-center mb-3">
+                <a class="mx-3">
+                  <i data-feather="triangle" stroke="white"></i>
+                </a>
+                <p class="m-0">65 upvotes</p>
+              </div>
+            </div>
+          </div> -->
+          <!-- POST END  -->
+          <!-- POST START  -->
+          <!-- <div class="col-lg-4">
+            <div class="card mb-5">
+              <p class="text-end pe-3 align-items-center mt-3">
+                January 29, 2024 15:46
+              </p>
+              <img src="image5.jpg" alt="" class="post-image" />
+              <h2 class="p-3">AI is going to takeover the world!</h2>
+              <div class="d-flex align-items-center mb-3">
+                <a class="mx-3">
+                  <i data-feather="triangle" stroke="white"></i>
+                </a>
+                <p class="m-0">65 upvotes</p>
+              </div>
+            </div>
+          </div> -->
+          <!-- POST END  -->
+          <!-- POST START  -->
+          <!-- <div class="col-lg-4">
+            <div class="card mb-5">
+              <p class="text-end pe-3 align-items-center mt-3">
+                January 29, 2024 15:46
+              </p>
+              <img src="image6.jpg" alt="" class="post-image" />
+              <h2 class="p-3">AI is going to takeover the world!</h2>
+              <div class="d-flex align-items-center mb-3">
+                <a class="mx-3">
+                  <i data-feather="triangle" stroke="white"></i>
+                </a>
+                <p class="m-0">65 upvotes</p>
+              </div>
+            </div>
+          </div> -->
+          <!-- POST END  -->
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+    <!-- Posts end  -->
+    <script>
+      function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i].trim();
+            // Check if this cookie string begins with the name we want
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+function toggleGlobalBeautyRank(button) {
+    var photoId = button.getAttribute('data-photo-id');
+
+    // Make an AJAX request to the Django view
+    $.ajax({
+        type: 'POST',
+        url: '/vote/' + photoId + '/',
+        dataType: 'json',
+        headers: {
+            'X-CSRFToken': getCookie('csrftoken'),  // Include CSRF token
+        },
+        success: function (data) {
+            // Update the displayed count on success
+            document.getElementById('globalBeautyRank' + photoId).innerText = 'Global Beauty Rank: ' + data.count;
+        },
+        error: function (xhr, status, error) {
+            console.error('Error:', error);
+        }
+    });
+}
+      feather.replace();
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
