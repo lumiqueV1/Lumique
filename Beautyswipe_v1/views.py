@@ -16,6 +16,8 @@ from django.views import View
 from django.db.models import Count
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
+import json
+import logging
 
 
 def home(request):
@@ -89,22 +91,34 @@ def submit_photo(request):
 
 
 
+logger = logging.getLogger(__name__)
+
 def vote(request, photo_id):
-    photo = get_object_or_404(Photos, pk=photo_id)
+    try:
+        photo = get_object_or_404(Photos, pk=photo_id)
+        client_ip, _ = get_client_ip(request)
 
-    # Check if the user has already voted for this photo
-    if not Vote.objects.filter(photo=photo, voter_ip=request.META.get('REMOTE_ADDR')).exists():
-        # Create a new Vote instance associated with the user's IP address
-        Vote.objects.create(photo=photo, voter_ip=request.META.get('REMOTE_ADDR'))
+        # Check if the user has already voted for this photo
+        if not Vote.objects.filter(photo=photo, voter_ip=client_ip).exists():
+            # Create a new Vote instance associated with the user's IP address
+            Vote.objects.create(photo=photo, voter_ip=client_ip)
 
-        # Increment the count by 1 for each vote
-        photo.increment_count()
+            # Increment the count by 1 for each vote
+            photo.increment_count()
 
-        # Return the updated count as a JSON response
-        return JsonResponse({'count': photo.get_votes_count()})
+            # Return the updated count as a JSON response
+            return JsonResponse({'count': photo.get_votes_count()})
 
-    # If the user has already voted, return an error
-    return JsonResponse({'error': 'Voting failed'}, status=400)
+        # If the user has already voted, return an error
+        return JsonResponse({'error': 'Voting failed - User has already voted'}, status=400)
+
+    except Exception as e:
+        # Log any exceptions for further analysis
+        logger.exception(f"Error processing upvote request: {str(e)}")
+        return JsonResponse({'error': 'Internal Server Error'}, status=500)
+    finally:
+        # Log request details
+        logger.info(f"Received upvote request for photo_id {photo_id}. Client IP: {client_ip}")
 
 
 def about(request):
