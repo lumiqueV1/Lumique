@@ -18,6 +18,7 @@ from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 import json
 import logging
+from ipware import get_client_ip
 
 
 def home(request):
@@ -96,6 +97,8 @@ logger = logging.getLogger(__name__)
 def vote(request, photo_id):
     try:
         photo = get_object_or_404(Photos, pk=photo_id)
+
+        # Use get_client_ip to retrieve client's IP address
         client_ip, _ = get_client_ip(request)
 
         # Check if the user has already voted for this photo
