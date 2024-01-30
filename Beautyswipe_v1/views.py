@@ -85,7 +85,7 @@ def submit_photo(request):
     else:
         form = PhotoSubmissionForm()
 
-    return render(request, 'Beautyswipe_v1/submit_photo.html', {'form': form})
+    return render(request, 'Beautyswipe_v1/photos.html', {'form': form})
 
 
 
