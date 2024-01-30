@@ -85,7 +85,7 @@ def submit_photo(request):
     else:
         form = PhotoSubmissionForm()
 
-    return render(request, 'Beautyswipe_v1/photos.html', {'form': form})
+    return render(request, 'Beautyswipe_v1/submit_photo.html', {'form': form})
 
 
 
@@ -125,7 +125,7 @@ def ranked_photos(request):
     ranked_photos = sorted(photos, key=lambda x: x.votes_count, reverse=True)
 
     # Render the ranked photos page
-    return render(request, 'Beautyswipe_v1/ranked_photos.html', {'ranked_photos': ranked_photos})
+    return render(request, 'Beautyswipe_v1/photos.html', {'ranked_photos': ranked_photos})
 
 
 def ranking(request):
