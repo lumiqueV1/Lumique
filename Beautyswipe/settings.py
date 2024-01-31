@@ -74,12 +74,12 @@ WSGI_APPLICATION = 'Beautyswipe.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.mysql',
         'NAME': 'railway',
-        'USER': 'postgres',
-        'PASSWORD': 'C4Ec4*-Ce24*2ACg31f*BEFdABFFA-1E',
-        'HOST': 'monorail.proxy.rlwy.net',
-        'PORT': '23308',
+        'USER': 'root',
+        'PASSWORD': 'D1AhAA24cDFHcHFHeEf-Cf4Ga24-FH1C',
+        'HOST': 'roundhouse.proxy.rlwy.net',
+        'PORT': '59352',
     }
 }
 
