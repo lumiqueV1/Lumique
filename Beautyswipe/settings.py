@@ -74,8 +74,8 @@ WSGI_APPLICATION = 'Beautyswipe.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'mysql.connector.django',
-        'NAME': 'railway',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mydb',
         'USER': 'root',
         'PASSWORD': 'D1AhAA24cDFHcHFHeEf-Cf4Ga24-FH1C',
         'HOST': 'roundhouse.proxy.rlwy.net',
